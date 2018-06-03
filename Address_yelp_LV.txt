@@ -1,0 +1,9 @@
+3853 Piedmont AveOakland,CA94611
+3859 Piedmont AveOakland,CA94611
+5301 College AveOakland,CA94618
+6317 College AveOakland,CA94618
+460 8th StOakland,CA94607
+2123 Franklin StOakland,CA94612
+1900 Telegraph AveOakland,CA94612
+5403 College AveOakland,CA94618
+303A Oakland AveOakland,CA94611

@@ -1,0 +1,64 @@
+#import threading
+import multiprocessing
+import requests
+import string
+from bs4 import BeautifulSoup
+################################################################################################
+set_file = open('Set_TRIP_All_links.txt', 'w')
+a=set() #it contains all the links to crawl...
+a.add(45)
+def trade_spider(page) :
+   # page=1
+    #print('\nNow Crawling Entire page to acquire all the links ...')
+    #while page <=max_pages :
+        print('/-Page Number='+str(page) )
+        url=str( page_number(page) )
+        base_link='https://www.tripadvisor.in'
+        source=requests.get(url)
+        plain_text=source.text
+        soup=BeautifulSoup(plain_text,'html.parser')
+        for link in soup.find_all('a',class_='property_title'):
+           href=link.get('href')
+           print(base_link+href)
+           set_file.write(base_link+href)
+           set_file.write('\n')
+
+       # print(" Page Crawling Completed!!\nNow going to each and every URL and Acquiring all the data\n   ")
+
+
+
+def page_number(page):
+    m = str((page - 1) * 30)
+    url='https://www.tripadvisor.in/RestaurantSearch-g45963-oa'+m+'-Las_Vegas_Nevada.html#EATERY_LIST_CONTENTS'
+    return url
+
+def ww(a):
+    for val in a:
+        set_file.write(str(val))
+        set_file.write('\n')
+    set_file.close()
+
+
+
+
+                                     #     IMPORTANT :/ uncomment to collect links ...
+
+ ## NO. OF PAGES to crawl...
+
+
+if __name__ =='__main__':
+    p=multiprocessing.Process(target=trade_spider,args=(1,))
+    q=multiprocessing.Process(target=trade_spider,args=(2,))
+    r=multiprocessing.Process(target=trade_spider,args=(3,))
+    s=multiprocessing.Process(target=trade_spider,args=(4,))
+    t=multiprocessing.Process(target=trade_spider,args=(5,))
+    p.start()
+    q.start()
+    r.start()
+    s.start()
+    t.start()
+    p.join()
+    q.join()
+    r.join()
+    s.join()
+    t.join()
